@@ -12,6 +12,7 @@ http://hadoop.apache.org/releases.html
 ## Install
 
 [Getting Started with Hadoop on Windows](http://opensourceforu.com/2015/03/getting-started-with-hadoop-on-windows/)
+
 [Building Hadoop Core for Windows](https://wiki.apache.org/hadoop/Hadoop2OnWindows)
 
 ## Config
