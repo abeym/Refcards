@@ -1,5 +1,8 @@
 # Raw Hadoop
 
+### Purpose
+To install a raw hadoop from apache on windows desktop.
+
 ## Downlaod
 
 ## Install
