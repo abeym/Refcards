@@ -15,6 +15,12 @@ http://hadoop.apache.org/releases.html
 
 [Building Hadoop Core for Windows](https://wiki.apache.org/hadoop/Hadoop2OnWindows)
 
+[All apache git projects](http://git.apache.org/)
+
+[SVN repo branch-trunk-win](https://svn.apache.org/repos/asf/hadoop/common/branches/branch-trunk-win/)
+
+[SVN repo trunk](https://svn.apache.org/repos/asf/hadoop/common/trunk)
+
 ## Config
 
 ## Usage 
