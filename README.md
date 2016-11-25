@@ -6,6 +6,8 @@ I intend to use this repo to archive my refcards which would be frequently used 
 2. [Git](MyRefcards_Git.md)
 3. [Spring](MyRefcards_Spring.md)
 4. [Sqoop](MyRefcards_Sqoop.md)
-4. [RawHadoop](MyRefcards_RawHadoop.md)
+5. [RawHadoop](MyRefcards_RawHadoop.md)
+5. [Docker](MyRefcards_Docker.md)
+5. [Puppet](MyRefcards_Puppet.md)
 
 Wiki Tips : https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet
