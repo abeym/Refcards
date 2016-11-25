@@ -23,6 +23,10 @@ mvn package -Pdist,native-win -DskipTests -Dtar
 
 [SVN repo trunk](https://svn.apache.org/repos/asf/hadoop/common/trunk)
 
+
+Install cygwin from [https://cygwin.com/install.html](https://cygwin.com/install.html)
+
+Protocol Buffers [https://developers.google.com/protocol-buffers/](https://developers.google.com/protocol-buffers/)
 ## Config
 
 ## Usage 
