@@ -1,10 +1,10 @@
 # Docker on Windows
 
 ### Purpose
-To install and user Docker on windows.
+To install and use Docker on windows.
 
 ## Study Link
-Ref:https://docs.docker.com/engine/getstarted/step_one/
+Ref: https://docs.docker.com/engine/getstarted/step_one/
 
 ## Downlaod
 
@@ -15,6 +15,9 @@ If using Windows without Hyper-V use : [Docker Toolbox](https://docs.docker.com/
 ## Install
 
 I instaled Docker Toolbox
+
+Go to Programs > Docker > Docker > Docker Quick Start Terminal
+Or Programs > Docker > Docker > Kitematic > Teminal
 Open docker terminal and verify installation 
 
 Check that you have the latest release
@@ -27,8 +30,6 @@ Check that you have the latest release
 
 ## Usage 
 
-	Go to Programs > Docker > Docker > Docker Quick Start Terminal
-	Or Programs > Docker > Docker > Kitematic > Teminal
 	
 ###### Start / Stop
 	docker-machine ls
