@@ -16,9 +16,9 @@ If using Windows without Hyper-V use : [Docker Toolbox](https://docs.docker.com/
 
 I instaled Docker Toolbox
 
-Go to Programs > Docker > Docker > Docker Quick Start Terminal
-Or Programs > Docker > Docker > Kitematic > Teminal
-Open docker terminal and verify installation 
+Go to Programs > Docker > Docker > Docker Quick Start Terminal  
+Or Programs > Docker > Docker > Kitematic > Teminal  
+Open docker terminal and verify installation   
 
 Check that you have the latest release
 
