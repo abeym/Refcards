@@ -2,8 +2,8 @@
 
 ## References
 
-1. [Sqoop User Guide](http://sqoop.apache.org/docs/1.4.6/SqoopUserGuide.html)
-2. [Apache Sqoop Cookbook by Kathleen Ting and Jarek Jarcec Cecho (O�Reilly). Copyright 2013 Kathleen Ting and Jarek Jarcec Cecho, 978-1-449-36462-5](https://www.amazon.com/Apache-Sqoop-Cookbook-Unlocking-Relational/dp/1449364624)
+###### 1. [Sqoop User Guide](http://sqoop.apache.org/docs/1.4.6/SqoopUserGuide.html)
+###### 2. [Apache Sqoop Cookbook by Kathleen Ting and Jarek Jarcec Cecho (O�Reilly). Copyright 2013 Kathleen Ting and Jarek Jarcec Cecho, 978-1-449-36462-5](https://www.amazon.com/Apache-Sqoop-Cookbook-Unlocking-Relational/dp/1449364624)
 
 ## Help
 
@@ -58,6 +58,7 @@ sqoop version
         --username=retail_dba \
         --password=cloudera \
         --table departments  \
+        --fields-terminated-by \\t \
         --warehouse-dir=/user/hive/warehouse
     
 ## Import a Table in SequenceFile format
@@ -101,6 +102,7 @@ sqoop version
         --username=retail_dba \
         --password=cloudera \
         --table departments  \
+        --fields-terminated-by \\t \
         --target-dir=/user/hive/warehouse/departments_compressed_GZip \
         --compress
     
@@ -112,6 +114,7 @@ sqoop version
         --username=retail_dba \
         --password=cloudera \
         --table departments  \
+        --fields-terminated-by \\t \
         --target-dir=/user/hive/warehouse/departments_compressed_BZip2 \
         --compress \
         --compression-codec org.apache.hadoop.io.compress.BZip2Codec
@@ -125,6 +128,7 @@ sqoop version
         --password=cloudera \
         --table departments  \
         --where "department_id >= 5" \
+        --fields-terminated-by \\t \
         --target-dir=/user/hive/warehouse/departments_gt_5
     
 ## Override Column Type Mapping
@@ -135,6 +139,7 @@ sqoop version
         --username=retail_dba \
         --password=cloudera \
         --table departments  \
+        --fields-terminated-by \\t \
         --target-dir=/user/hive/warehouse/departments_col_mapping \
         --map-column-java department_id=Long,department_name=String
     
@@ -146,6 +151,7 @@ sqoop version
         --username=retail_dba \
         --password=cloudera \
         --table departments  \
+        --fields-terminated-by \\t \
         --target-dir=/user/hive/warehouse/departments_10_mappers
     
 ## Handling NULL Values From Database
@@ -157,6 +163,7 @@ sqoop version
         --password=cloudera \
         --table departments  \
         --target-dir=/user/hive/warehouse/departments_NULL_handling \
+        --fields-terminated-by \\t \
         --null-string '\\N' \
         --null-non-string '\\N'
     
@@ -167,6 +174,7 @@ sqoop version
         --connect jdbc:mysql://quickstart:3306/retail_db \
         --username=retail_dba \
         --password=cloudera \
+        --fields-terminated-by \\t \
         --warehouse-dir=/user/hive/warehouse/import_all
     
 ## Exclude Tables During Bulk Import
@@ -176,6 +184,7 @@ sqoop version
         --connect jdbc:mysql://quickstart:3306/retail_db \
         --username=retail_dba \
         --password=cloudera \
+        --fields-terminated-by \\t \
         --warehouse-dir=/user/hive/warehouse/import_all_with_excludes \
         --exclude-tables orders,customers
     
@@ -188,6 +197,7 @@ sqoop version
         --password=cloudera \
         --table orders \
         --where "order_id <= 4000" \
+        --fields-terminated-by \\t \
         --target-dir=/user/hive/warehouse/orders_incremental_append
 
     sqoop import \
@@ -195,6 +205,7 @@ sqoop version
         --username=retail_dba \
         --password=cloudera \
         --table orders \
+        --fields-terminated-by \\t \
         --target-dir=/user/hive/warehouse/orders_incremental_append \
         --incremental=append \
         --check-column=order_id \
@@ -209,6 +220,7 @@ sqoop version
         --password=cloudera \
         --table orders \
         --where "order_date < '2013-08-17 00:00:00'" \
+        --fields-terminated-by \\t \
         --target-dir=/user/hive/warehouse/orders_incremental_lastmodified
     
     sqoop import \
@@ -216,6 +228,7 @@ sqoop version
         --username=retail_dba \
         --password=cloudera \
         --table orders \
+        --fields-terminated-by \\t \
         --target-dir=/user/hive/warehouse/orders_incremental_lastmodified \
         --incremental=lastmodified \
         --check-column=order_date \
@@ -230,6 +243,7 @@ sqoop version
         --username=retail_dba \
         --password=cloudera \
         --table orders \
+        --fields-terminated-by \\t \
         --where "order_date < '2013-08-17 00:00:00'" \
         --target-dir=/user/hive/warehouse/sqoop_job_incremental_import_Orders
     
@@ -241,6 +255,7 @@ sqoop version
         --username=retail_dba \
         --password-file sqoop.password \
         --table orders \
+        --fields-terminated-by \\t \
         --target-dir=/user/hive/warehouse/sqoop_job_incremental_import_Orders \
         --incremental=lastmodified \
         --check-column=order_date \
@@ -269,7 +284,7 @@ sqoop version
     
 ## Start a Sqoop Metastore Service
     
-    sqoop metastore
+######    sqoop metastore
     
 ## Import Data Using a Join Query
     
@@ -282,6 +297,7 @@ sqoop version
             FROM categories cat JOIN departments dept 
             on cat.category_department_id = dept.department_id where $CONDITIONS' \
         --split-by category_id \
+        --fields-terminated-by \\t \
         --target-dir=/user/hive/warehouse/categories_denormed \
         --map-column-java category_id=Long,department_name=String,category_name=String
     
@@ -296,6 +312,7 @@ sqoop version
             on cat.category_department_id = dept.department_id where $CONDITIONS' \
         --split-by category_id \
         --boundary-query "select min(category_id), max(category_id) from categories" \
+        --fields-terminated-by \\t \
         --target-dir=/user/hive/warehouse/categories_denormed_with_boundary 
     
 ## Provide Custom Name to MapReduce Jobs triggered by Sqoop
@@ -306,30 +323,68 @@ sqoop version
         --password=cloudera \
         --table departments  \
         --target-dir=/user/hive/warehouse/departments_custom_mr_job \
+        --fields-terminated-by \\t \
         --mapreduce-job-name `date +%Y-%m-%d`_`echo $USER`_departments_custom_mr_job_name
     
+## MySql RunBook for Cloudera retail_db
+
+######    mysql --user=retail_dba --password=cloudera --database=retail_db
+######    
+######    TRUNCATE orders_copy_01;
+######    TRUNCATE orders_copy_02;
+######    TRUNCATE orders_copy_03;
+######    TRUNCATE orders_copy_04;
+######    TRUNCATE orders_copy_05;
+######    TRUNCATE orders_copy_06;
+######    TRUNCATE orders_copy_07;
+######    TRUNCATE orders_copy_08;
+######    TRUNCATE orders_processed;
+
+######    DROP TABLE orders_copy_01;
+######    DROP TABLE orders_copy_02;
+######    DROP TABLE orders_copy_03;
+######    DROP TABLE orders_copy_04;
+######    DROP TABLE orders_copy_05;
+######    DROP TABLE orders_copy_06;
+######    DROP TABLE orders_copy_07;
+######    DROP TABLE orders_copy_08;
+######    DROP TABLE orders_processed;
+
+######    SELECT count(*) FROM orders; -- 68883
+######    CREATE TABLE orders_staging SELECT * FROM orders WHERE 1=0;
+######    CREATE TABLE orders_copy_01 SELECT * FROM orders WHERE 1=0;
+######    CREATE TABLE orders_copy_02 SELECT * FROM orders WHERE 1=0;
+######    CREATE TABLE orders_copy_03 SELECT * FROM orders WHERE 1=0;
+######    CREATE TABLE orders_copy_04 SELECT * FROM orders WHERE 1=0;
+######    CREATE TABLE orders_copy_05 SELECT * FROM orders WHERE 1=0;
+######    CREATE TABLE orders_copy_06 SELECT * FROM orders WHERE order_id <= 100; -- 68783
+######    CREATE TABLE orders_copy_07 SELECT * FROM orders WHERE order_id <= 100; -- 68783
+######    SELECT * FROM orders_copy_07 where order_id=100;
+######    UPDATE orders_copy_07 SET order_status='COMPLETE' where order_id=100;
+######    SELECT * FROM orders_copy_07 where order_id=100;
+######    CREATE TABLE orders_copy_08 SELECT * FROM orders WHERE 1=0;
+######    CREATE TABLE orders_processed SELECT * FROM orders WHERE 1=0;
+
+######    SELECT count(*) FROM orders_staging;
+######    SELECT count(*) FROM orders_copy_01;
+######    SELECT count(*) FROM orders_copy_02;
+######    SELECT count(*) FROM orders_copy_03;
+######    SELECT count(*) FROM orders_copy_04;
+######    SELECT count(*) FROM orders_copy_05;
+######    SELECT count(*) FROM orders_copy_06;
+######    SELECT count(*) FROM orders_copy_07;
+######    SELECT count(*) FROM orders_copy_08;
+######    SELECT count(*) FROM orders_processed;
+
+
 ## Export Data from Hadoop to RDBMS
 
-    mysql --user=retail_dba --password=cloudera --database=retail_db
-    SELECT count(*) FROM orders; -- 68883
-    CREATE TABLE orders_staging SELECT * FROM orders WHERE 1=0;
-    CREATE TABLE orders_copy_01 SELECT * FROM orders WHERE 1=0;
-    CREATE TABLE orders_copy_02 SELECT * FROM orders WHERE 1=0;
-    CREATE TABLE orders_copy_03 SELECT * FROM orders WHERE 1=0;
-    CREATE TABLE orders_copy_04 SELECT * FROM orders WHERE 1=0;
-    CREATE TABLE orders_copy_05 SELECT * FROM orders WHERE 1=0;
-    CREATE TABLE orders_copy_06 SELECT * FROM orders WHERE order_id > 100; -- 68783
-    CREATE TABLE orders_copy_07 SELECT * FROM orders WHERE order_id > 100; -- 68783
-    select * from orders_copy_07 where order_id=101;
-    UPDATE TABLE orders_copy_07 SET order_status='COMPLETE' where order_id=101;
-    select * from orders_copy_07 where order_id=101;
-    CREATE TABLE orders_copy_08 SELECT * FROM orders WHERE 1=0;
-    
     sqoop export \
         --connect jdbc:mysql://quickstart:3306/retail_db \
         --username=retail_dba \
         --password=cloudera \
         --table orders_copy_01 \
+        --input-fields-terminated-by \\t \
         --export-dir=/user/hive/warehouse/import_all/orders
     
 ## Export Data from Hadoop to RDBMS - Using JDBC Batch
@@ -339,6 +394,7 @@ sqoop version
         --username=retail_dba \
         --password=cloudera \
         --table orders_copy_02 \
+        --input-fields-terminated-by \\t \
         --export-dir=/user/hive/warehouse/import_all/orders \
         --batch
     
@@ -350,6 +406,7 @@ sqoop version
         --username=retail_dba \
         --password=cloudera \
         --table orders_copy_03 \
+        --input-fields-terminated-by \\t \
         --export-dir=/user/hive/warehouse/import_all/orders
     
 ## Export Data from Hadoop to RDBMS - Controlling No Of Statements Per Transaction
@@ -359,6 +416,7 @@ sqoop version
         --connect jdbc:mysql://quickstart:3306/retail_db \
         --username=retail_dba \
         --password=cloudera \
+        --input-fields-terminated-by \\t \
         --table orders_copy_04 \
         --export-dir=/user/hive/warehouse/import_all/orders
     
@@ -371,6 +429,7 @@ sqoop version
         --table orders_copy_05 \
         --staging-table orders_staging \
         --clear-staging-table \
+        --input-fields-terminated-by \\t \
         --export-dir=/user/hive/warehouse/import_all/orders
     
 ## Updating an Existing DataSet
@@ -380,8 +439,9 @@ sqoop version
         --username=retail_dba \
         --password=cloudera \
         --table orders_copy_06 \
+        --input-fields-terminated-by \\t \
         --export-dir=/user/hive/warehouse/import_all/orders \
-        --update-key order_id
+        --update-key order_id,order_date,order_customer_id,order_status
     
 ## Updating/Inserting Existing/New DataSet
 
@@ -390,8 +450,9 @@ sqoop version
         --username=retail_dba \
         --password=cloudera \
         --table orders_copy_07 \
+        --input-fields-terminated-by \\t \
         --export-dir=/user/hive/warehouse/import_all/orders \
-        --update-key order_id \
+        --update-key order_id,order_date,order_customer_id,order_status \
         --update-mode allowinsert
     
 ## Handling NULL Values From HDFS
@@ -401,6 +462,7 @@ sqoop version
         --username=retail_dba \
         --password=cloudera \
         --table orders_copy_08 \
+        --input-fields-terminated-by \\t \
         --export-dir=/user/hive/warehouse/import_all/orders \
         --input-null-string '\\N' \
         --input-null-non-string '\\N'
@@ -412,6 +474,7 @@ sqoop version
         --username=retail_dba \
         --password=cloudera \
         --table orders_processed \
+        --input-fields-terminated-by \\t \
         --export-dir=/user/hive/warehouse/import_all/orders_processed \
         --columns order_id,order_date
     
