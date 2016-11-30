@@ -529,7 +529,23 @@ tee - Read from standard input and write to standard output and files
 **sed** – Stream editor for filtering and transforming text
 
 **aspell** – Interactive spell checker
-
 ***
 **I am reading :** The Linux Command Line by William E. Shotts, Jr.
 ***
+
+
+===
+
+Linux Common usages
+
+**find command: Recursively Search All Files For A String**
+
+find /path/to/dir/ -name 'file-pattern' | xargs grep 'search-term'
+find . -name '*.DONE' | xargs grep 'Count'
+
+
+find /path/to/dir/ -type f -name "file-pattern" -print0 | xargs -I {} -0 grep -l "search-term" "{}"
+find . -type f -print0 | xargs -I {} -0 grep -l "*Count*" "{}"
+
+===
+
