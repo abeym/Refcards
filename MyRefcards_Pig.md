@@ -194,19 +194,29 @@
 	join_dept_catg_ordered_projected = foreach join_dept_catg_ordered generate department_id, department_name, category_id, category_name;
 	dump join_dept_catg_ordered_projected;
 	
-## PigLatin Semantics
-	describe
-	load
-	group
-	foreach
-	generate group
-	join
-	dump
-	filter
-	group
-	order
-	limit
-	store
+### join types
+	
+	1. Fragment Replicated Join
+		* Large Dataset Joined to Small Dataset
+		* Small Dataset loaded into memory
+		* Large Dataset will be streamed
+		* Supports Inner and Left Outer Joins
+	2. Skew Join
+		* Suitable for Dataset where few keys have more magnitude of records than other keys
+		* Can be Inner or Outer Joins
+	3. Sort-Merge Join
+		* To Join with already sorted Datasets
+	
+
+
+### limit
+
+	categories = load '/user/hive/warehouse/import_all/categories' as (category_id:long, category_department_id:long, category_name:chararray);
+	dump categories;
+	categories_first10 = order categories by category_id;
+	dump categories_first10;
+	categories_first10 = limit categories_first10 10;
+	dump categories_first10;
 
 ## PigLatin Functions
 	SUM()
