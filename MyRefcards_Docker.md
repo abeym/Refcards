@@ -22,9 +22,9 @@ Open docker terminal and verify installation
 
 Check that you have the latest release
 
+	docker 
 	docker version
 	docker info
-	
 
 ## Config
 
@@ -32,6 +32,7 @@ Check that you have the latest release
 
 	
 ###### Start / Stop
+	docker-machine 
 	docker-machine ls
 	docker-machine stop default
 	docker-machine ls
@@ -71,7 +72,8 @@ To find the ip address of docker
 (Note: Another method is in Virtualbox click File>Preferences>Network>Host-only Network and hover over `VirtualBox Host-Only Ethernet Adapter #4` . Look for ip of  `Lower Bound`)
 
 Register on [Docker Hub signup page](https://hub.docker.com/register/).
-Confirm Your Email. Create Repository. Set the repo Visibility is set to Public.
+Confirm Your Email. Create Repository. Set repo name to docker-whale. Set repo visibility is to Public.
+
 Build your own image 
 
 	docker run docker-whale
@@ -91,23 +93,70 @@ Build your own image
 Tag and push
 
 	docker login
+
+	docker images
 	docker tag 1429198da1b4 abeym/docker-whale:latest
 	docker push abeym/docker-whale
 	docker images
 
 Remove and pull 
 
+	docker images
 	docker rmi -f 1429198da1b4
 	docker rmi -f abeym/docker-whale
 	docker rmi -f docker-whale
 	docker images
 	docker run abeym/docker-whale	
+	docker images
 
 ##### Build and manage Machine, Container, Image, Application
  Ref : [Docker Tutorials](https://docs.docker.com/engine/tutorials/) 
 
+Build your own images
 
+	docker images
+	docker search <image / user name>
+	docker search sinatra
+	docker run -t -i training/sinatra /bin/bash
+	# apt-get install -y ruby2.0-dev ruby2.0
+	# gem2.0 install json
+	# exit
+	
+	docker images
+	docker commit -m "Added json gem" -a "Abey M"  e34d823789cb abeym/sinatra:v1
+	docker run -t -i abeym/sinatra:v1 /bin/bash
+    
+Building an image from a Dockerfile
 
+	cd /c/Abey/Projects/docker/sinatra
+	touch Dockerfile
+	vi Dockerfile
+	
+		# This is a comment
+		FROM ubuntu:latest
+		MAINTAINER Abey M <abey_mail@yahoo.com>
+		RUN apt-get update && apt-get install -y ruby2.2 ruby2.2-dev
+		RUN gem install json
+		RUN gem install sinatra
+
+	docker build -t abeym/sinatra:v2 .
+	** dont forget the dot . **
+	... Sending build context to Docker daemon 2.048 kB
+	...
+	...
+	... Removing intermediate container 6b81cb6313e5
+	.... Successfully built 97feabe5d2ed
+	
+	docker images
+	docker tag 5db5f8471261 abeym/sinatra:v2
+	 ** ID of the image, here 5db5f8471261 **
+	docker push abeym/sinatra
+	docker history 2c6edc1cfab4
+	
+	docker rmi abeym/sinatra
+	docker run -t -i abeym/sinatra /bin/bash
+	
+	
 ## Projects
 
 ## Tips & Notes

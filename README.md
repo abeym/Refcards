@@ -19,4 +19,5 @@ I intend to use this repo to archive my refcards which would be frequently used 
   1. [RawHadoop](MyRefcards_RawHadoop.md)
   2. [Docker](MyRefcards_Docker.md)
   3. [Puppet](MyRefcards_Puppet.md)
+  4. [Spark Scala](MyRefcards_SparkScala.md)
 
