@@ -38,7 +38,7 @@ Check that you have the latest release
 	docker-machine ls
 	docker-machine start default
 	
-##### Getting started
+#### Getting started
 
 See if you have any running containers
 
@@ -109,7 +109,7 @@ Remove and pull
 	docker run abeym/docker-whale	
 	docker images
 
-##### Build and manage Machine, Container, Image, Application
+#### Build and manage Machine, Container, Image, Application
  Ref : [Docker Tutorials](https://docs.docker.com/engine/tutorials/) 
 
 Build your own images
@@ -156,6 +156,47 @@ Building an image from a Dockerfile
 	docker rmi abeym/sinatra
 	docker run -t -i abeym/sinatra /bin/bash
 	
+#### Network containers
+	
+	docker network ls
+
+bridge is special network and containers are launched by default in it.
+
+	docker run -itd --name=networktest ubuntu
+	docker network inspect bridge
+	docker network disconnect bridge networktest
+
+  create a network and run a container in it	
+	
+	docker network create -d bridge my-bridge-network
+	docker network ls
+	docker network inspect my-bridge-network
+	docker run -d --net=my-bridge-network --name db training/postgres
+	docker inspect --format='{{json .NetworkSettings.Networks}}'  db
+	
+  run a container in default network and connect to db.
+  
+	docker run -d --name web training/webapp python app.py
+	docker inspect --format='{{json .NetworkSettings.Networks}}'  web
+	docker inspect --format='{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' web
+	docker exec -it db bash
+	# ping 172.17.0.2
+		^C
+		--- 172.17.0.2 ping statistics ---
+		44 packets transmitted, 0 received, 100% packet loss, time 43185ms
+	# exit
+	$ docker network connect my-bridge-network web
+	$ docker exec -it db bash
+	# ping web
+		64 bytes from web (172.18.0.3): icmp_seq=1 ttl=64 time=0.095 ms
+		^C
+		--- web ping statistics ---
+		3 packets transmitted, 3 received, 0% packet loss, time 2000ms
+
+#### Manage data in containers	
+	
+
+
 	
 ## Projects
 
