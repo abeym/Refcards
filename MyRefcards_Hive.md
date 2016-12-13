@@ -209,6 +209,8 @@
         FIELDS TERMINATED BY '\t'
         LINES TERMINATED BY '\n';
 	
+	insert into customers_partitioned PARTITION (customer_state) select customer_id , customer_fname , customer_lname , customer_email , customer_password , customer_street , customer_city , customer_zipcode, customer_state from customers;
+	
 	-- Multiple Partitions by state, city
 	CREATE TABLE customers_multiple_partitioned
         (customer_id BIGINT, customer_fname STRING, customer_lname STRING, customer_email STRING, customer_password STRING, customer_street STRING, customer_zipcode STRING)
@@ -217,11 +219,25 @@
         FIELDS TERMINATED BY '\t'
         LINES TERMINATED BY '\n';
 
+	insert into customers_multiple_partitioned PARTITION (customer_state, customer_city) select customer_id , customer_fname , customer_lname , customer_email , customer_password , customer_street  , customer_zipcode, customer_state, customer_city from customers;
+
 	-- How to prevent full table scan query
 	hive> set hive.mapred.mode=strict;
 	
 	-- How to allow full table scan query
 	hive> set hive.mapred.mode=nonstrict;
+	
+	-- to allow dynamic partitions insert
+	hive> hive.exec.dynamic.partition=true;
+	
+	-- default is strict which requires atleast one static partition to be present
+	hive> set hive.exec.dynamic.partition.mode=nonstrict;
+	
+	-- max partitions that can be created by mapper or reducer per node
+	hive>set hive.exec.max.dynamic.partitions.pernode=1000;
+	
+	-- max partitions that can be created
+	hive> set hive.exec.max.dynamic.partitions=10000;
 	
 	-- List Partitions of a table
 	SHOW PARTITIONS customers_partitioned;
@@ -231,13 +247,126 @@
 	SHOW PARTITIONS customer PARTITION(country = 'US');
 	SHOW PARTITIONS customer PARTITION(country = 'US', state='DC');
 	
-## Bucketing
+### Bucketing
 	
-	-- Enable Buketing
+	-- Enable Bucketing
 	set hive.enforce.bucketing=true;
 	
-	CREATE TABLE sales_bucketed (id INT, fname STRING, lname STRING, address STRING,city STRING,state STRING, zip STRING, IP STRING, prod_id STRING, date1 STRING) CLUSTERED BY (id) INTO 10 BUCKETS;
-	INSERT INTO sales_bucketed SELECT * from sales;
+	DROP TABLE customers_bucketed
+
+        CREATE TABLE customers_bucketed (customer_id BIGINT, customer_fname STRING, customer_lname STRING, customer_email STRING, customer_password STRING, customer_street STRING, customer_city STRING, customer_state STRING, customer_zipcode STRING) 
+        CLUSTERED BY (customer_id) INTO 5 BUCKETS
+        ROW FORMAT DELIMITED
+        FIELDS TERMINATED BY '\t'
+        LINES TERMINATED BY '\n';
+
+	INSERT INTO customers_bucketed SELECT * from customers;
+	
+## Data Manipulation Language
+	
+	-- prep test data
+	-- 1. export the data to hdfs
+
+	sqoop import \
+        -m 1 \
+        --connect jdbc:mysql://quickstart:3306/retail_db \
+        --username=retail_dba \
+        --password=cloudera \
+        --table categories  \
+        --fields-terminated-by \\t \
+        --warehouse-dir=/user/cloudera/zikzakjack/data/retail_db/
+	
+	-- 2. copy the data to local filesystem
+	
+	hdfs dfs -copyToLocal /user/cloudera/zikzakjack/data/retail_db/categories/part-m-00000 /home/cloudera/ZikZakJack/retail_db/categories.txt
+	
+	-- verify the local file
+	cat /home/cloudera/ZikZakJack/retail_db/categories.txt
+	
+	-- 3. create the table structure in hive
+	
+	CREATE TABLE categories
+        (category_id BIGINT, category_department_id BIGINT, category_name STRING)
+        ROW FORMAT DELIMITED
+        FIELDS TERMINATED BY '\t'
+        LINES TERMINATED BY '\n';
+	
+### Loading files into tables
+	
+	-- load data from local file to Hive table
+	cat /home/cloudera/ZikZakJack/retail_db/categories.txt
+	wc -l /home/cloudera/ZikZakJack/retail_db/categories.txt
+	hive> describe categories;
+	hive> LOAD DATA LOCAL INPATH '/home/cloudera/ZikZakJack/retail_db/categories.txt' INTO TABLE categories;
+	hdfs dfs -ls /user/hive/warehouse/categories/
+	hive> select count(*) from categories;
+	hive> truncate table categories;
+	
+	-- load data from hdfs file to Hive table
+	hdfs dfs -ls /user/cloudera/zikzakjack/data/retail_db/categories/part-m-00000
+	hive> describe categories;
+	hive> LOAD DATA INPATH '/user/cloudera/zikzakjack/data/retail_db/categories/part-m-00000' INTO TABLE categories;
+	hdfs dfs -ls /user/hive/warehouse/categories/
+	hive> select count(*) from categories;
+
+	-- overwrite the data present in the categories
+	hive> select count(*) from categories;
+	hive> LOAD DATA LOCAL INPATH '/home/cloudera/ZikZakJack/retail_db/categories.txt' OVERWRITE INTO TABLE categories;
+	hive> select count(*) from categories;
+
+	
+### Inserting data into Hive tables from queries
+	
+	CREATE TABLE categories_copy AS SELECT * FROM categories WHERE 1=0;
+	select count(*) from categories_copy;
+	INSERT INTO categories_copy SELECT * FROM categories;
+	select count(*) from categories_copy;
+	SELECT count(*) FROM categories WHERE category_department_id = 6;
+	INSERT INTO categories_copy SELECT * FROM categories WHERE category_department_id = 6;
+	select count(*) from categories_copy;
+	INSERT OVERWRITE TABLE categories_copy SELECT * FROM categories;
+	select count(*) from categories_copy;
+	INSERT OVERWRITE TABLE categories_copy SELECT * FROM categories WHERE category_id = 1;
+	select count(*) from categories_copy;
+	
+### Inserting data into dynamic partitions
+	
+	CREATE TABLE customers_partitioned_01
+        (customer_id BIGINT, customer_fname STRING, customer_lname STRING, customer_email STRING, customer_password STRING, customer_street STRING, customer_city STRING, customer_zipcode STRING)
+        PARTITIONED BY (customer_state STRING)
+        ROW FORMAT DELIMITED
+        FIELDS TERMINATED BY '\t'
+        LINES TERMINATED BY '\n';
+	
+	FROM customers_bucketed cust INSERT OVERWRITE TABLE customers_partitioned_01 PARTITION(customer_state) select cust.customer_id , cust.customer_fname , cust.customer_lname , cust.customer_email , cust.customer_password , cust.customer_street , cust.customer_city, cust.customer_zipcode, customer_state;
+	
+	select count(*) from customers_partitioned_01;
+	
+	CREATE TABLE customers_multiple_partitioned_01
+        (customer_id BIGINT, customer_fname STRING, customer_lname STRING, customer_email STRING, customer_password STRING, customer_street STRING, customer_zipcode STRING)
+        PARTITIONED BY (customer_state STRING, customer_city STRING)
+        ROW FORMAT DELIMITED
+        FIELDS TERMINATED BY '\t'
+        LINES TERMINATED BY '\n';
+
+	FROM customers_bucketed cust INSERT OVERWRITE TABLE customers_multiple_partitioned_01 PARTITION(customer_state, customer_city) select cust.customer_id , cust.customer_fname , cust.customer_lname , cust.customer_email , cust.customer_password , cust.customer_street , cust.customer_city, cust.customer_zipcode, customer_state;
+
+	select count(*) from customers_multiple_partitioned_01;
+	
+### Writing data into files from queries
+	
+	
+### Enabling transactions in Hive
+	
+	
+### Inserting values into tables from SQL
+	
+	
+### Updating data
+	
+	
+### Deleting data
+	
 	
 
 ## Beeline
