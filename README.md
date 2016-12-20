@@ -20,4 +20,8 @@ I intend to use this repo to archive my refcards which would be frequently used 
   2. [Docker](MyRefcards_Docker.md)
   3. [Puppet](MyRefcards_Puppet.md)
   4. [Spark Scala](MyRefcards_SparkScala.md)
+  5. [AWS](MyRefcards_AWS.md)
+  6. [Cloudera](MyRefcards_Cloudera.md)
+  7. [Horton Works](MyRefcards_HortonWorks.md)
+  8. [Java CC](MyRefcards_JavaCC.md)
 
