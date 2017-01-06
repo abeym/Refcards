@@ -200,6 +200,15 @@ bridge is special network and containers are launched by default in it.
 	
 ## Projects
 
+#### Docker is the New QuickStart Option for Apache Hadoop and Cloudera
+	Ref: http://blog.cloudera.com/blog/2015/12/docker-is-the-new-quickstart-option-for-apache-hadoop-and-cloudera/
+	docker pull cloudera/quickstart:latest
+	docker images # note the hash of the image and substitute it below
+	docker run --privileged=true \
+	--hostname=quickstart.cloudera \
+	-t -i ${HASH} \
+	/usr/bin/docker-quickstart
+	
 ## Tips & Notes
 
 ### Help
