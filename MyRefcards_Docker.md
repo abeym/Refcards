@@ -204,12 +204,22 @@ bridge is special network and containers are launched by default in it.
 	Ref: http://blog.cloudera.com/blog/2015/12/docker-is-the-new-quickstart-option-for-apache-hadoop-and-cloudera/
 	docker pull cloudera/quickstart:latest
 	docker images # note the hash of the image and substitute it below
-	docker run --privileged=true \
-	--hostname=quickstart.cloudera \
-	-t -i ${HASH} \
-	/usr/bin/docker-quickstart
+	docker run --privileged=true --hostname=quickstart.cloudera -t -i -p 80 ${HASH} /usr/bin/docker-quickstart
+	# e.g. used this on my machine
+	# docker run --privileged=true --hostname=quickstart.cloudera -t -i -p 80 4239cd2958c6 /usr/bin/docker-quickstart
+	# When the previous command finishes, it enables a Bash Shell. From this Bash Shell execute the following command in order to see which is the docker image IP: 
+	# hostname -I
+	# Put this IP in the browser and working!
 	
+
 ## Tips & Notes
+
+##### Error: 
+	An error occurred trying to connect: Get http://%2F%2F.%2Fpipe%2Fdocker_engine/v1.24/containers/json: open //./pipe/dock
+er_engine: The system cannot find the file specified.
+##### Solution:
+	Open powershell and run 
+	docker-machine env --shell=powershell | Invoke-Expression
 
 ### Help
 
