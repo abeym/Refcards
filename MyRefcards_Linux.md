@@ -42,7 +42,7 @@
 
 **ls -ld */** : list directory in long format with directories only
 
-**ls -lF** : list directory in long format, append an indicator character to the end of each listed name. For example, a ì/î if the name is a directory.
+**ls -lF** : list directory in long format, append an indicator character to the end of each listed name. For example, a ‚Äú/‚Äù if the name is a directory.
 
 **ls -lh** : list directory in long format, display file sizes in human readable format rather than in bytes.
 
@@ -54,13 +54,13 @@
 
 **ls -l o*** : Any file beginning with "o"
 
-**ls -l t*.csv** : Any file beginning with ìtî followed by any characters and ending with ".csv"
+**ls -l t*.csv** : Any file beginning with ‚Äút‚Äù followed by any characters and ending with ".csv"
 
-**ls -l AIG_???.dat** : Any file beginning with ìAIG_î followed by exactly three characters
+**ls -l AIG_???.dat** : Any file beginning with ‚ÄúAIG_‚Äù followed by exactly three characters
 
-**ls -l [At3]*** : Any file beginning with either an ìAî, ìtî, or  ì3î
+**ls -l [At3]*** : Any file beginning with either an ‚ÄúA‚Äù, ‚Äút‚Äù, or  ‚Äú3‚Äù
 
-**ls -l AIG_[0-9][0-9][0-9].DAT** : 	Any file beginning with ìAIG_î followed by exactly three numerals and ending with ì.datî
+**ls -l AIG_[0-9][0-9][0-9].DAT** : 	Any file beginning with ‚ÄúAIG_‚Äù followed by exactly three numerals and ending with ‚Äú.dat‚Äù
 
 **ls -l [[:upper:]]*** :  	Any file beginning with an uppercase letter
 
@@ -68,7 +68,7 @@
 
 **s -l [[:digit:]]*** :  Any file beginning with a numeral
 
-**ls -l *[[:lower:]0123]** :  	Any file ending with a lowercase letter or the numerals ì0î or ì1î or ì2î or ì3î
+**ls -l *[[:lower:]0123]** :  	Any file ending with a lowercase letter or the numerals ‚Äú0‚Äù or ‚Äú1‚Äù or ‚Äú2‚Äù or ‚Äú3‚Äù
 
 
 ***
@@ -97,7 +97,7 @@
 
 ***
 
-**cp item1 item2** : Copy the single file or directory ìitem1î to file or directory ìitem2î
+**cp item1 item2** : Copy the single file or directory ‚Äúitem1‚Äù to file or directory ‚Äúitem2‚Äù
 
 **cp file1 file2 file3 dir1** " Copy file1, file2, file3 into directory dir1
 
@@ -170,7 +170,7 @@ Note :
 
 ***
 
-**type** ñ Indicate how a command name is interpreted
+**type** ‚Äì Indicate how a command name is interpreted
 
 ***
 
@@ -202,7 +202,7 @@ ls is /bin/ls
 
 ***
 
-**which** ñ Display which executable program will be executed
+**which** ‚Äì Display which executable program will be executed
 
 ***
 
@@ -218,19 +218,19 @@ which only works for executable programs, not shell builtins not aliases
 
 **help command_name** : Display the built-in help for the given command
 
-**man command_name** ñ Display a command's manual page
+**man command_name** ‚Äì Display a command's manual page
 
-**apropos search_term** ñ Display a list of appropriate commands whose man pages contain the **search_term**
+**apropos search_term** ‚Äì Display a list of appropriate commands whose man pages contain the **search_term**
 
-**info** ñ Display a command's info entry
+**info** ‚Äì Display a command's info entry
 
-**whatis command_name** ñ Display a very brief description of a command
+**whatis command_name** ‚Äì Display a very brief description of a command
 
 ***
 
-**alias alias_name='command_string'** ñ Create an alias **alias_name** for a command **command_string**
+**alias alias_name='command_string'** ‚Äì Create an alias **alias_name** for a command **command_string**
 
-**unalias alias_name** ñ Remove an alias **alias_name**
+**unalias alias_name** ‚Äì Remove an alias **alias_name**
 
 **alias** : See all the alias defined in that environment
 
@@ -321,7 +321,7 @@ tee - Read from standard input and write to standard output and files
 
 **Quoting** : The shell provides a mechanism called quoting to selectively suppress unwanted expansions
 
-**Double Quotes** : all the special characters used by the shell lose their special meaning and are treated as ordinary characters. The exceptions are ì$î, ì\î (backslash), and ì`î (backquote). This means that word-splitting, pathname expansion, tilde expansion, and brace expansion are suppressed, but parameter expansion, arithmetic expansion, and command substitution are still carried out.
+**Double Quotes** : all the special characters used by the shell lose their special meaning and are treated as ordinary characters. The exceptions are ‚Äú$‚Äù, ‚Äú\‚Äù (backslash), and ‚Äú`‚Äù (backquote). This means that word-splitting, pathname expansion, tilde expansion, and brace expansion are suppressed, but parameter expansion, arithmetic expansion, and command substitution are still carried out.
 
 **Single Quotes**: If we need to suppress all expansions, we use single quotes.
 
@@ -331,21 +331,21 @@ tee - Read from standard input and write to standard output and files
 
 ***
 
-**id** ñ Display user identity
+**id** ‚Äì Display user identity
 
-**chmod** ñ Change a file's mode
+**chmod** ‚Äì Change a file's mode
 
-**umask** ñ Set the default file permissions
+**umask** ‚Äì Set the default file permissions
 
-**su** ñ Run a shell as another user
+**su** ‚Äì Run a shell as another user
 
-**sudo** ñ Execute a command as another user
+**sudo** ‚Äì Execute a command as another user
 
-**chown** ñ Change a file's owner
+**chown** ‚Äì Change a file's owner
 
-**chgrp** ñ Change a file's group ownership
+**chgrp** ‚Äì Change a file's group ownership
 
-**passwd** ñ Change a user's password
+**passwd** ‚Äì Change a user's password
 
 ***
 
@@ -353,21 +353,21 @@ tee - Read from standard input and write to standard output and files
 
 ***
 
-**ps** ñ Report a snapshot of current processes
+**ps** ‚Äì Report a snapshot of current processes
 
-**top** ñ Display tasks
+**top** ‚Äì Display tasks
 
-**jobs** ñ List active jobs
+**jobs** ‚Äì List active jobs
 
-**bg** ñ Place a job in the background
+**bg** ‚Äì Place a job in the background
 
-**fg** ñ Place a job in the foreground
+**fg** ‚Äì Place a job in the foreground
 
-**kill** ñ Send a signal to a process
+**kill** ‚Äì Send a signal to a process
 
-**killall** ñ Kill processes by name
+**killall** ‚Äì Kill processes by name
 
-**shutdown** ñ Shutdown or reboot the system
+**shutdown** ‚Äì Shutdown or reboot the system
 
 ***
 
@@ -375,13 +375,13 @@ tee - Read from standard input and write to standard output and files
 
 ***
 
-**printenv** ñ Print part or all of the environment
+**printenv** ‚Äì Print part or all of the environment
 
-**set** ñ Set shell options
+**set** ‚Äì Set shell options
 
-**export** ñ Export environment to subsequently executed programs
+**export** ‚Äì Export environment to subsequently executed programs
 
-**alias** ñ Create an alias for a command
+**alias** ‚Äì Create an alias for a command
 
 
 ***
@@ -425,25 +425,25 @@ tee - Read from standard input and write to standard output and files
 
 ***
 
-**mount** ñ Mount a file system
+**mount** ‚Äì Mount a file system
 
-**umount** ñ Unmount a file system
+**umount** ‚Äì Unmount a file system
 
-**fsck** ñ Check and repair a file system
+**fsck** ‚Äì Check and repair a file system
 
-**fdisk** ñ Partition table manipulator
+**fdisk** ‚Äì Partition table manipulator
 
-**mkfs** ñ Create a file system
+**mkfs** ‚Äì Create a file system
 
-**fdformat** ñ Format a floppy disk
+**fdformat** ‚Äì Format a floppy disk
 
-**dd** ñ Write block oriented data directly to a device
+**dd** ‚Äì Write block oriented data directly to a device
 
-**genisoimage (mkisofs)** ñ Create an ISO 9660 image file
+**genisoimage (mkisofs)** ‚Äì Create an ISO 9660 image file
 
-**wodim (cdrecord)** ñ Write data to optical storage media
+**wodim (cdrecord)** ‚Äì Write data to optical storage media
 
-**md5sum** ñ Calculate an MD5 checksum 
+**md5sum** ‚Äì Calculate an MD5 checksum 
 
 ***
 
@@ -451,19 +451,19 @@ tee - Read from standard input and write to standard output and files
 
 ***
 
-**ping** ñ Send an ICMP ECHO_REQUEST to network hosts
+**ping** ‚Äì Send an ICMP ECHO_REQUEST to network hosts
 
-**traceroute** ñ Print the route packets trace to a network host
+**traceroute** ‚Äì Print the route packets trace to a network host
 
-**netstat** ñ Print network connections, routing tables, interface statistics, masquerade connections, and multicast memberships
+**netstat** ‚Äì Print network connections, routing tables, interface statistics, masquerade connections, and multicast memberships
 
-**ftp** ñ Internet file transfer program
+**ftp** ‚Äì Internet file transfer program
 
-**lftp** ñ A Better ftp
+**lftp** ‚Äì A Better ftp
 
-**wget** ñ Non-interactive network downloader
+**wget** ‚Äì Non-interactive network downloader
 
-**ssh** ñ OpenSSH SSH client (remote login program)
+**ssh** ‚Äì OpenSSH SSH client (remote login program)
 
 **scp And sftp** - two programs that can make use of an SSH-encrypted tunnel to copy files across the network
 
@@ -506,29 +506,29 @@ tee - Read from standard input and write to standard output and files
 
 ***
 
-**cat** ñ Concatenate files and print on the standard output
+**cat** ‚Äì Concatenate files and print on the standard output
 
-**sort** ñ Sort lines of text files
+**sort** ‚Äì Sort lines of text files
 
-**uniq** ñ Report or omit repeated lines
+**uniq** ‚Äì Report or omit repeated lines
 
-**cut** ñ Remove sections from each line of files
+**cut** ‚Äì Remove sections from each line of files
 
-**paste** ñ Merge lines of files
+**paste** ‚Äì Merge lines of files
 
-**join** ñ Join lines of two files on a common field
+**join** ‚Äì Join lines of two files on a common field
 
-**comm** ñ Compare two sorted files line by line
+**comm** ‚Äì Compare two sorted files line by line
 
-**diff** ñ Compare files line by line
+**diff** ‚Äì Compare files line by line
 
-**patch** ñ Apply a diff file to an original
+**patch** ‚Äì Apply a diff file to an original
 
-**tr** ñ Translate or delete characters
+**tr** ‚Äì Translate or delete characters
 
-**sed** ñ Stream editor for filtering and transforming text
+**sed** ‚Äì Stream editor for filtering and transforming text
 
-**aspell** ñ Interactive spell checker
+**aspell** ‚Äì Interactive spell checker
 ***
 **I am reading :** The Linux Command Line by William E. Shotts, Jr.
 ***
@@ -541,10 +541,12 @@ Linux Common usages
 **find command: Recursively Search All Files For A String**
 
 find /path/to/dir/ -name 'file-pattern' | xargs grep 'search-term'
+
 find . -name '*.DONE' | xargs grep 'Count'
 
 
 find /path/to/dir/ -type f -name "file-pattern" -print0 | xargs -I {} -0 grep -l "search-term" "{}"
+
 find . -type f -print0 | xargs -I {} -0 grep -l "*Count*" "{}"
 
 ===
