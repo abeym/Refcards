@@ -549,5 +549,9 @@ find /path/to/dir/ -type f -name "file-pattern" -print0 | xargs -I {} -0 grep -l
 
 find . -type f -print0 | xargs -I {} -0 grep -l "*Count*" "{}"
 
+** find the version of linux running from the prompt
+
+cat /etc/*-release
+
 ===
 
