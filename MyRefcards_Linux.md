@@ -538,6 +538,8 @@ tee - Read from standard input and write to standard output and files
 
 Linux Common usages
 
+Find examples - http://www.binarytides.com/linux-find-command-examples/
+
 **find command: Recursively Search All Files For A String**
 
 find /path/to/dir/ -name 'file-pattern' | xargs grep 'search-term'
@@ -552,6 +554,7 @@ find . -type f -print0 | xargs -I {} -0 grep -l "*Count*" "{}"
 **find the version of linux running from the prompt
 
 cat /etc/*-release
+
 
 ===
 
