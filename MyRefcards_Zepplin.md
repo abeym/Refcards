@@ -32,7 +32,8 @@ sudo git clone https://github.com/hortonworks-gallery/ambari-zeppelin-service.gi
 
 sudo service ambari-server restart
 
-Ambari dashboard, choose Actions -> Add Service:
+Once Ambari comes back up and the services turn green, you can click on 'Add Service' from the 'Actions' dropdown menu in the bottom left of the Ambari dashboard:
+On bottom left -> Actions -> Add service -> check Zeppelin service -> Next -> Next -> Next -> Deploy. 
 
 '''
 

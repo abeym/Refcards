@@ -235,3 +235,8 @@ er_engine: The system cannot find the file specified.
 
     command 2
     
+## Wiki Refs 
+
+1. [Markdown-Cheatsheet](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet)
+2. [mastering-markdown](https://guides.github.com/features/mastering-markdown/)
+
