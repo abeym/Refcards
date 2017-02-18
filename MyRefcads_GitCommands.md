@@ -1,9 +1,7 @@
-# How to download only a subfolder from github
+# Helpful Git Commands
 
 
-### Purpose
-
-Q: How can I download only a specific folder or directory from a remote Git repo hosted on GitHub?
+#### How can I download only a specific folder / sub-folder or directory from a remote Git repo hosted on GitHub?
 
 Git doesn't support this, but Github does via SVN. If you checkout your code with subversion, Github will essentially convert the repo from git to subversion on the backend, then serve up the requested directory.
 
