@@ -156,6 +156,27 @@ Building an image from a Dockerfile
 	docker rmi abeym/sinatra
 	docker run -t -i abeym/sinatra /bin/bash
 	
+#### Connect to running containers
+	$ sudo docker ps
+		CONTAINER ID  IMAGE            COMMAND    CREATED STATUS  PORTS          NAMES
+		665b4a1e17b6  webserver:latest /bin/bash  ...     ...     22/tcp, 80/tcp loving_heisenberg 
+	
+	$ sudo docker run webserver
+	This will start the container
+	
+	$ sudo docker attach 665b4a1e17b6 #by ID
+	or
+	$ sudo docker attach loving_heisenberg #by Name
+	$ root@665b4a1e17b6:/# 
+	
+	If we use attach we can use only one instance of shell. So if we want open new terminal with new instance of container's shell, we just need run the following:
+	
+	$ sudo docker exec -i -t 665b4a1e17b6 /bin/bash #by ID
+	or
+	$ sudo docker exec -i -t loving_heisenberg /bin/bash #by Name
+	$ root@665b4a1e17b6:/#
+
+
 #### Network containers
 	
 	docker network ls
@@ -197,10 +218,24 @@ bridge is special network and containers are launched by default in it.
 	
 
 
+## Help
+
+### Tips & Notes
+
+##### Error: 
+	An error occurred trying to connect: Get http://%2F%2F.%2Fpipe%2Fdocker_engine/v1.24/containers/json: open //./pipe/dock
+er_engine: The system cannot find the file specified.
+##### Solution:
+	Open powershell and run 
+	docker-machine env --shell=powershell | Invoke-Expression
+
+
+
+
 	
 ## Projects
 
-#### Docker is the New QuickStart Option for Apache Hadoop and Cloudera
+#### QuickStart Option for Apache Hadoop and Cloudera
 	Ref: http://blog.cloudera.com/blog/2015/12/docker-is-the-new-quickstart-option-for-apache-hadoop-and-cloudera/
 	docker pull cloudera/quickstart:latest
 	docker images # note the hash of the image and substitute it below
@@ -211,17 +246,6 @@ bridge is special network and containers are launched by default in it.
 	# hostname -I
 	# Put this IP in the browser and working!
 	
-
-## Tips & Notes
-
-##### Error: 
-	An error occurred trying to connect: Get http://%2F%2F.%2Fpipe%2Fdocker_engine/v1.24/containers/json: open //./pipe/dock
-er_engine: The system cannot find the file specified.
-##### Solution:
-	Open powershell and run 
-	docker-machine env --shell=powershell | Invoke-Expression
-
-### Help
 
 
 ### Version
