@@ -109,6 +109,12 @@ Remove and pull
 	docker run abeym/docker-whale	
 	docker images
 
+Clean up 
+  delete all images & containers
+  
+	docker images -q | xargs docker rmi -f
+	docker ps -q | xargs docker rm
+	
 #### Build and manage Machine, Container, Image, Application
  Ref : [Docker Tutorials](https://docs.docker.com/engine/tutorials/) 
 
