@@ -1,8 +1,8 @@
 
-#Git_Docker
+#Git_Dropbox
 
 
-## Create a private Git repository using Docker
+## Create a private Git repository using Dropbox
 
 Set up bare Git repositories in our Dropbox folders and use them as our Git remotes.
 
