@@ -1,8 +1,8 @@
-# Raw Hadoop
+# Java Compiler Compiler
 
 ### Purpose
 
-Usage of Spark and Scala
+Usage of Java CC
 
 ## Downlaod
 
