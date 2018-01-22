@@ -172,6 +172,15 @@ git config --global alias.unstage 'reset HEAD --'
 git config --global alias.last 'log -1 HEAD'
 
 
+##Override local files with Git Pull
+
+git fetch --all
+
+git reset --hard origin/master
+
+		How it works:
+		git fetch downloads the latest from remote without trying to merge or rebase anything.
+		Then the git reset resets the master branch to what you just fetched. The --hard option changes all the files in your working tree to match the files in origin/master.
 
 ##Git Samples from Github
 
