@@ -2,7 +2,7 @@
 
 # MyRefcards
 
-I intend to use this repo to archive my refcards which would be frequently used in day to day routines.
+Repo to archive my refcards which would be frequently used in day to day routines.
 
 1. [Linux](MyRefcards_Linux.md)
 2. [Git](MyRefcards_Git.md)
