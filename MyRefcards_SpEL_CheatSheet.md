@@ -323,3 +323,13 @@ You can also use explicit conversions that are available in utility classes and 
 | `DATE_FORMAT` | Date formatting/parsing operations             |
 | `UTIL`        | Various utilities (e.g. identifier generation) |
 | `AGG`         | Aggregator functions                           |
+
+
+
+## Additional Refences 
+
+| Topic        | 
+| -------       | 
+| [Spring Expression Language (SpEL)](https://docs.spring.io/spring-integration/docs/current/reference/html/spel.html#spel-functions)         | 
+| [Spring Docs (SpEL)](https://docs.spring.io/spring-framework/docs/current/reference/html/core.html#expressions) |
+| [Tutorial Point - Spring SpEL - Overview](https://www.tutorialspoint.com/spring_expression_language/spring_expression_language_quick_guide.htm) |
