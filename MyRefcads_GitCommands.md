@@ -19,3 +19,53 @@ If you're interested in master branch, use trunk instead. So the full path is tr
 If you're interested in foo branch, use branches/branchname instead. The full path looks like branches/branchname/foldername
 Protip: You can use svn ls to see available tags and branches before downloading if you wish
 That's all! Github supports more subversion features as well, including support for committing and pushing changes.
+
+----
+
+#### Setup git repo on onedrive.
+
+Go to onedrive folder in your pc and create a folder for git repository.
+Usually onedrive resides in `C:\Users\%username%\OneDrive`
+
+Open GitBash
+
+cd ~/OneDrive
+
+mkdir git
+
+cd git 
+
+mkdir myproject
+
+cd myproject
+
+git init
+
+git config --bool core.bare true
+
+
+
+Now go to your workspace.. generally this will be any folder in your PC, outside of OneDrive.. 
+
+Never create your workspace in onedrive or it will save all the files from node_modules.
+
+Lets say worspace is in D:\workspace
+
+Open GitBash
+
+cd D:/workspace
+
+git clone ~/OneDrive/git/myproject
+
+cd myproject
+
+touch testfile.txt
+
+git add .
+
+git commit -m "initial commit"
+
+git push origin master
+
+
+Congratulation.. you have a private git repository on cloud.
